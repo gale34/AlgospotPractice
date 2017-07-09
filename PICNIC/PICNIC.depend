@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1499573058 source:c:\users\game\documents\algospot\algospotpractice\picnic\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+
