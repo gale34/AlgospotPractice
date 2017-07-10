@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1499681882 source:c:\users\game\documents\algospot\algospotpractice\boardcover\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+
