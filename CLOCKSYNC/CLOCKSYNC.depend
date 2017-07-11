@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1499759273 source:c:\users\game\documents\algospot\algospotpractice\clocksync\main.cpp
+	<iostream>
+	<vector>
+	<cstdio>
+
