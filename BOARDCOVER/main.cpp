@@ -48,7 +48,6 @@ int main()
         else
             coverBoard(board);
 
-
         cout << answer << endl;
 
         answer = 0;
@@ -64,16 +63,6 @@ int main()
 
 void coverBoard(char** board)
 {
-    /*for(int i = 0; i < h; i++)
-    {
-        for(int j = 0; j < w; j++)
-            cout << board[i][j];
-        cout << endl;
-    }
-    cout << "==============================" << endl;*/
-
-//cout << "x : " << x << " y : " << y <<endl;
-
     int x = -1;
     int y = -1;
     for(int i = 0; i < h; i++)
@@ -128,7 +117,6 @@ void coverBoard(char** board)
                 board[x+dx[b]][y+dy[b]] = '#';
                 nEmptyCell -= 3;
 
-                //cout << "ith -> " << i << " x : " << x << " y : " << y <<endl;
                 coverBoard(board);
                 board[x][y] = '.';
                 board[x+dx[a]][y+dy[a]] = '.';

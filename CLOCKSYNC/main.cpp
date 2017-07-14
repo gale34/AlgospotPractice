@@ -65,16 +65,12 @@ void syncClocks(int* clock,int n)
         {
             for(int k = 1; k < 6; k++)
             {
-            //cout << syncSwitch[n][k] << " ";
-
                 if(syncSwitch[n][k] == -1)
                     break;
                 clock[syncSwitch[n][k]] += 3;
                 if(clock[syncSwitch[n][k]] == 15)
                     clock[syncSwitch[n][k]] = 3;
             }
-
-            //cout << endl;
         }
 
         if(are12(clock))
@@ -83,12 +79,7 @@ void syncClocks(int* clock,int n)
                 answer += syncSwitch[k][0];
 
             if(minAnswer > answer)
-            {
-                //for(int k = 0; k < 10; k++)
-                  //  cout << syncSwitch[k][0] << " ";
-                //cout << endl;
                 minAnswer = answer;
-            }
 
         }
 

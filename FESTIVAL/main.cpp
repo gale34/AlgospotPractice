@@ -47,18 +47,12 @@ double get_Min_avg()
             if(i == 0)
             {
                 avg = (double)concertHall[j]/(j+1);
-                /*cout << "i : " << i;
-                cout << " j : " << j;
-                cout << " avg : " << avg << endl;*/
                 if(answer > avg)
                     answer = avg;
             }
             else
             {
                 avg = (double)(concertHall[j] - concertHall[i-1]) / (j - i + 1);
-                /*cout << "i : " << i;
-                cout << " j : " << j;
-                cout << " avg : " << avg << endl;*/
                 if(answer > avg)
                     answer = avg;
             }
