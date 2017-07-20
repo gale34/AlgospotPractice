@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1500550593 source:c:\users\game\documents\algospot\algospotpractice\wildcard\main.cpp
+	<iostream>
+	<cstdio>
+	<vector>
+	<cstring>
+	<algorithm>
+
