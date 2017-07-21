@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1500635011 source:c:\users\game\documents\algospot\algospotpractice\trianglepath\main.cpp
+	<iostream>
+	<cstdio>
+	<vector>
+
