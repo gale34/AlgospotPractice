@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1501076080 source:c:\users\game\documents\algospot\algospotpractice\pi\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+	<vector>
+	<cstdlib>
+
