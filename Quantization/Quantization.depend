@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1501499206 source:c:\users\game\documents\algospot\algospotpractice\quantization\main.cpp
+	<iostream>
+	<cstdio>
+	<vector>
+	<cstring>
+	<algorithm>
+	<cmath>
+
