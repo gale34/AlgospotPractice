@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1501594496 source:c:\users\game\documents\algospot\algospotpractice\tripathcnt\main.cpp
+	<iostream>
+	<cstdio>
+	<vector>
+
