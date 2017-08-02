@@ -4,19 +4,19 @@
 
 using namespace std;
 
-double snailMem[1001][1001];
+double snailMem[1001][2002];
 
 double getSnailAnswer(int n, int m, int x, int y);
 
 int main()
 {
     int c, n, m;
-    freopen("input.txt", "r", stdin);
+    //freopen("input.txt", "r", stdin);
 
     cin >> c;
 
-    for(int i = 0; i < 1001; i++)
-        memset(snailMem[i],0,sizeof(double)*1001);
+    for(int j = 0; j < 1001; j++)
+        memset(snailMem[j],-1,sizeof(double)*2002);
 
     cout.precision(10);
 
@@ -25,27 +25,37 @@ int main()
         cin >> n >> m;
 
         cout << getSnailAnswer(n, m,0,0) << endl;
+
+        for(int j = 0; j < 1001; j++)
+            memset(snailMem[j],-1,sizeof(double)*2002);
     }
 
     return 0;
 }
 
-double getSnailAnswer(int n, int m, int x, int y)
+double getSnailAnswer(int depth, int days, int dx, int dy)
 {
-    if(y >= m)
-        return 0;
+    if(dy >= days)
+    {
+        if(dx >= depth)
+            return 1;
+        else
+            return 0;
+    }
 
-    if(x >= n)
+    if(dx >= depth)
         return 1;
 
-    double& answer = snailMem[x][y];
+    double& answer = snailMem[dx][dy];
 
-    if(answer != 0)
+
+    if(answer >= 0)
         return answer;
 
-    answer = (0.75 * getSnailAnswer(n,m,x+2,y+1)) + (0.25 * getSnailAnswer(n,m,x+1,y+1));
+    answer = (0.75 * getSnailAnswer(depth,days,dx+2,dy+1)) + (0.25 * getSnailAnswer(depth,days,dx+1,dy+1));
 
-    cout << "t : " << answer << endl;
+
+    //cout << " x : " << dx << " y : " << dy << " " << answer << endl;
 
     return answer;
 }
