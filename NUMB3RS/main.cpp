@@ -13,7 +13,7 @@ int main()
 {
     int c, n, d, p, t;
 
-    freopen("input.txt","r",stdin);
+    //freopen("input.txt","r",stdin);
     cout.precision(10);
 
     cin >> c;
