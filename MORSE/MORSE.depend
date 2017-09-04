@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1504518174 source:c:\users\game\documents\algospot\algospotpractice\morse\main.cpp
+	<iostream>
+	<cstdio>
+	<vector>
+	<cstring>
+
