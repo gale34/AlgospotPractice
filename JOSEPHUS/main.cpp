@@ -26,9 +26,9 @@ int main()
         for(int j = 1; j < n+1; j++)
             soliders.push_back(j);
 
-        for(list<int>::iterator ptr = soliders.begin() ; ptr != soliders.end(); ptr++)
+        /*for(list<int>::iterator ptr = soliders.begin() ; ptr != soliders.end(); ptr++)
             cout << *ptr << " ";
-        cout << endl;
+        cout << endl;*/
 
         whoIsTheSurvivers(soliders, n,k);
 
@@ -66,25 +66,23 @@ void whoIsTheSurvivers(list<int>& soliders, int n, int k)
 
         ptr = ptr_start;
 
-        for(list<int>::iterator ptr1 = soliders.begin() ; ptr1 != soliders.end(); ptr1++)
+        /*for(list<int>::iterator ptr1 = soliders.begin() ; ptr1 != soliders.end(); ptr1++)
             cout << *ptr1 << " ";
-        cout << endl;
+        cout << endl;*/
 
         SSize = soliders.size();
 
-        if(k-1 + next < SSize)
-            next = k-1 + next;
+        if(k-1 + next <= SSize)
+            next = (k-1 + next) % SSize;
         else
-        {
-            next = (k-1 + next - SSize - 1) % SSize;
-            ptr = soliders.begin();
-        }
+            next = (k-1 + next - SSize) % SSize;
+
+        ptr = soliders.begin();
         for(int j = 0; j < next; j++)
             ptr++;
 
-        cout << "next : " << next << endl;
-
-        cout << "? : " << *ptr << endl;
+        /*cout << "next : " << next << endl;
+        cout << "? : " << *ptr << endl;*/
 
         if(soliders.size() == 2)
             break;
