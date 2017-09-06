@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1504694530 source:c:\users\game\documents\algospot\algospotpractice\brackets2\main.cpp
+	<iostream>
+	<stack>
+	<cstdio>
+	<cstring>
+
