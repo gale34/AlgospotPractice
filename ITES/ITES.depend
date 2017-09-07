@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1504755883 source:c:\users\game\documents\algospot\algospotpractice\ites\main.cpp
+	<iostream>
+	<cstdio>
+	<queue>
+	<cstring>
+
