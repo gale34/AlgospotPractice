@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1505121209 source:c:\users\game\documents\algospot\algospotpractice\fortress\main.cpp
+	<iostream>
+	<vector>
+	<cstdio>
+	<cstring>
+	<cmath>
+
