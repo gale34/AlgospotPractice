@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1505293457 source:c:\users\game\documents\algospot\algospotpractice\nerd2\main.cpp
+	<iostream>
+	<map>
+	<cstdio>
+	<cstring>
+	<algorithm>
+
