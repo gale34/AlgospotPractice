@@ -5,14 +5,14 @@
 
 using namespace std;
 
-void pushHeap(vector<__int64>& h, __int64 next, bool isMaxHeap);
-__int64 popHeap(vector<__int64>& heap, bool isMaxHeap);
-__int64 getMedian(vector<__int64>& maxHeap, vector<__int64>& minHeap, __int64 next);
-__int64 getNextNumber(__int64* seq, int a, int b, int idx);
+void pushHeap(vector<long long>& h, long long next, bool isMaxHeap);
+long long popHeap(vector<long long>& heap, bool isMaxHeap);
+long long getMedian(vector<long long>& maxHeap, vector<long long>& minHeap, long long next);
+long long getNextNumber(long long* seq, int a, int b, int idx);
 
 int main()
 {
-    freopen("input.txt","r",stdin);
+    //freopen("input.txt","r",stdin);
 
     int c;
 
@@ -20,31 +20,22 @@ int main()
     for(int i = 0; i < c; i++)
     {
         int n,a,b;
-        __int64* seq;
-        __int64 medNumber = 0;
+        long long* seq;
+        long long medNumber = 0;
         int answer = 0;
-        vector<__int64> maxHeap, minHeap;
+        vector<long long> maxHeap, minHeap;
 
         cin >> n >> a >> b;
 
-        seq = new __int64[n+1];
-        memset(seq,0,sizeof(__int64)*(n+1));
+        seq = new long long[n+1];
+        memset(seq,0,sizeof(long long)*(n+1));
 
         for(int j = 0; j < n; j++)
         {
-            __int64 next = getNextNumber(seq, a, b, j);
+            long long next = getNextNumber(seq, a, b, j);
 
             medNumber = getMedian(maxHeap, minHeap, next);
 
-            cout << "test" << endl;
-            for(int k = 0; k < (int)maxHeap.size(); k++)
-            {
-                cout << "maxHeap" << k << ": " <<maxHeap[k]<<endl;
-            }
-            for(int k = 0; k < (int)minHeap.size(); k++)
-            {
-                cout << "minHeap" << k << ": " <<minHeap[k]<<endl;
-            }
             answer += medNumber;
             answer %= 20090711;
 
@@ -60,7 +51,7 @@ int main()
     return 0;
 }
 
-void pushHeap(vector<__int64>& heap, __int64 next, bool isMaxHeap)
+void pushHeap(vector<long long>& heap, long long next, bool isMaxHeap)
 {
     heap.push_back(next);
 
@@ -97,9 +88,9 @@ void pushHeap(vector<__int64>& heap, __int64 next, bool isMaxHeap)
         }
     }
 }
-__int64 popHeap(vector<__int64>& heap, bool isMaxHeap)
+long long popHeap(vector<long long>& heap, bool isMaxHeap)
 {
-    __int64 popVal = heap[0];
+    long long popVal = heap[0];
     int idx = 0;
     heap[0] = heap.back();
 
@@ -146,10 +137,10 @@ __int64 popHeap(vector<__int64>& heap, bool isMaxHeap)
             if(leftChild >= (int)heap.size())
                 break;
 
-            if(heap[leftChild] > heap[idx])
+            if(heap[leftChild] < heap[idx])
                 next = leftChild;
 
-            if(rightChild < (int)heap.size() && heap[rightChild] > heap[next])
+            if(rightChild < (int)heap.size() && heap[rightChild] < heap[next])
                 next = rightChild;
 
             if(next == idx)
@@ -166,7 +157,7 @@ __int64 popHeap(vector<__int64>& heap, bool isMaxHeap)
     return popVal;
 }
 
-__int64 getMedian(vector<__int64>& maxHeap, vector<__int64>& minHeap, __int64 next)
+long long getMedian(vector<long long>& maxHeap, vector<long long>& minHeap, long long next)
 {
     if(maxHeap.empty() && minHeap.empty())
         pushHeap(maxHeap,next,true);
@@ -176,11 +167,13 @@ __int64 getMedian(vector<__int64>& maxHeap, vector<__int64>& minHeap, __int64 ne
         {
             if((int)maxHeap.size() > (int)minHeap.size())
                 pushHeap(minHeap,next,false);
-            else
+            else// equal..
             {
-                int moveNumber = popHeap(minHeap,false);
-                pushHeap(maxHeap,moveNumber,true);
+                int moveNumber = 0;
                 pushHeap(minHeap,next,false);
+                moveNumber = popHeap(minHeap,false);
+                pushHeap(maxHeap,moveNumber,true);
+
             }
 
         }
@@ -188,19 +181,31 @@ __int64 getMedian(vector<__int64>& maxHeap, vector<__int64>& minHeap, __int64 ne
         {
             if((int)maxHeap.size() > (int)minHeap.size())
             {
-                int moveNumber = popHeap(maxHeap,true);
-                pushHeap(minHeap,moveNumber,false);
+                int moveNumber = 0;
                 pushHeap(maxHeap,next,true);
+                moveNumber = popHeap(maxHeap,true);
+                pushHeap(minHeap,moveNumber,false);
             }
             else
                 pushHeap(maxHeap,next,true);
         }
+
     }
+
+    /*if(!maxHeap.empty() && !minHeap.empty() && minHeap[0] < maxHeap[0])
+    {
+        __int64 a = maxHeap[0];
+        __int64 b = minHeap[0];
+        popHeap(maxHeap,true);
+        popHeap(minHeap,false);
+        pushHeap(maxHeap,b,true);
+        pushHeap(minHeap,a,false);
+    }*/
 
     return maxHeap[0];
 }
 
-__int64 getNextNumber(__int64* seq, int a, int b, int idx)
+long long getNextNumber(long long* seq, int a, int b, int idx)
 {
     if(idx == 0)
         return seq[idx] = 1983;
