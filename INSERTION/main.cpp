@@ -6,7 +6,7 @@
 using namespace std;
 
 typedef int KeyType;
-typedef pair<Node*, Node*> NodePair;
+
 
 struct Node {
     KeyType key;
@@ -35,7 +35,9 @@ struct Node {
     }
 };
 
-Nodepair split(Node* root, KeyType key) {
+typedef pair<Node*, Node*> NodePair;
+
+NodePair split(Node* root, KeyType key) {
     if(root == NULL)
         return NodePair(NULL,NULL);
 
