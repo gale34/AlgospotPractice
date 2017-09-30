@@ -3,10 +3,151 @@
 #include <string>
 #include <cstring>
 #include <cstdio>
+#include <algorithm>
 
 using namespace std;
 
-vector<string> getWordChain(int** wordGraph, vector<string>& wordList);
+vector<vector<int> > adj;
+vector<string> graph[26][26];
+vector<int> indegree, outdegree;
+
+void makeGraph(const vector<string>& wordList);
+void getEullerCircult(int here, vector<int>& circuit);
+bool checkEuler();
+string solve(const vector<string>& wordList);
+
+int main()
+{
+    //freopen("input.txt","r",stdin);
+
+    int c;
+
+    cin >> c;
+
+    for(int i = 0; i < c; i++)
+    {
+        int n;
+        vector<string> wordList;
+        string answer = "";
+
+        cin >> n;
+
+        for(int j = 0; j < n; j++)
+        {
+            string temp;
+
+            cin >> temp;
+            wordList.push_back(temp);
+        }
+
+        answer = solve(wordList);
+        cout << answer <<endl;
+    }
+
+    return 0;
+}
+
+void makeGraph(const vector<string>& wordList)
+{
+    for(int i = 0; i < 26; i++)
+        for(int j = 0; j < 26; j++)
+            graph[i][j].clear();
+
+    adj = vector<vector<int> >(26, vector<int>(26,0));
+    indegree = outdegree = vector<int>(26,0);
+
+    for(int i = 0; i < wordList.size(); i++)
+    {
+        int a = wordList[i][0] - 'a';
+        int b = wordList[i][wordList[i].size()-1] - 'a';
+        graph[a][b].push_back(wordList[i]);
+        adj[a][b]++;
+        outdegree[a]++;
+        indegree[b]++;
+    }
+}
+
+void getEulerCircuit(int here, vector<int>& circuit)
+{
+    for(int there = 0; there < adj.size(); there++)
+        while(adj[here][there] > 0)
+        {
+            adj[here][there]--;
+            getEulerCircuit(there,circuit);
+        }
+    circuit.push_back(here);
+}
+
+vector<int> getEulerTrailOrCircuit()
+{
+    vector<int> circuit;
+
+    for(int i = 0; i < 26; i++)
+    {
+        if(outdegree[i] == indegree[i]+1)
+        {
+            getEulerCircuit(i,circuit);
+            return circuit;
+        }
+    }
+
+    for(int i = 0; i < 26; i++)
+    {
+        if(outdegree[i])
+        {
+            getEulerCircuit(i, circuit);
+            return circuit;
+        }
+    }
+    return circuit;
+}
+
+bool checkEuler()
+{
+    int plus1 = 0;
+    int minus1 = 0;
+
+    for(int i = 0; i < 26; i++)
+    {
+        int delta = outdegree[i] - indegree[i];
+
+        if(delta < -1 || 1 < delta)
+            return false;
+        if(delta == 1)
+            plus1++;
+        if(delta == -1)
+            minus1++;
+    }
+    return (plus1 == 1 && minus1 == 1) || (plus1 == 0 && minus1 == 0);
+}
+
+string solve(const vector<string>& wordList)
+{
+    makeGraph(wordList);
+    if(!checkEuler())
+        return "IMPOSSIBLE";
+
+    vector<int> circuit = getEulerTrailOrCircuit();
+
+    if(circuit.size() != wordList.size() + 1)
+        return "IMPOSSIBLE";
+
+    reverse(circuit.begin(), circuit.end());
+    string ret;
+
+    for(int i = 1; i < circuit.size(); i++)
+    {
+        int a = circuit[i-1], b = circuit[i];
+        if(ret.size())
+            ret += " ";
+        ret += graph[a][b].back();
+        graph[a][b].pop_back();
+    }
+    return ret;
+}
+
+
+/*vector<string> getWordChain(int** wordGraph, vector<string>& wordList);
 void checkWords(int* visited, int** wordGraph, vector<string>& wordList, vector<string>& answer, int idx);
 
 int main()
@@ -100,3 +241,4 @@ void checkWords(int* visited, int** wordGraph, vector<string>& wordList, vector<
     }
     answer.push_back(wordList[idx]);
 }
+*/
