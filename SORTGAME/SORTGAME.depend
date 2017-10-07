@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1507355353 source:c:\users\game\documents\algospot\algospotpractice\sortgame\main.cpp
+	<iostream>
+	<map>
+	<vector>
+	<algorithm>
+	<queue>
+	<cstdio>
+
