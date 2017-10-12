@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1507817355 source:c:\users\game\documents\algospot\algospotpractice\hanoi4\main.cpp
+	<iostream>
+	<cstdio>
+	<queue>
+	<cstring>
+
