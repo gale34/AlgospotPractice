@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1507897485 source:c:\users\game\documents\algospot\algospotpractice\routing\main.cpp
+	<iostream>
+	<vector>
+	<queue>
+	<cstdio>
+	<algorithm>
+
