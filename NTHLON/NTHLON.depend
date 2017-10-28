@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1509176476 source:c:\users\game\documents\algospot\algospotpractice\nthlon\main.cpp
+	<iostream>
+	<vector>
+	<cmath>
+	<cstdio>
+	<queue>
+
