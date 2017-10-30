@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1509354674 source:c:\users\game\documents\algospot\algospotpractice\timetrip\main.cpp
+	<iostream>
+	<vector>
+	<cstdio>
+	<queue>
+
