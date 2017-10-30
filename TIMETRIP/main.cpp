@@ -42,20 +42,21 @@ int main()
 
         getAnswer(graph,fast,slow);
 
-        if(fast.empty())
-            cout << "INFINITY";
-        else if(fast[1] == INF)
-        {
+        if(!checkPath(graph,0,1))
             cout << "UNREACHABLE" << endl;
-            continue;
-        }
         else
-            cout << fast[1];
+        {
+            if(fast.empty())
+                cout << "INFINITY";
+            else
+                cout << fast[1];
 
-        if(slow.empty())
-            cout << " INFINITY" << endl;
-        else
-            cout << " " << slow[1] << endl;
+            if(slow.empty())
+                cout << " INFINITY" << endl;
+            else
+                cout << " " << slow[1] << endl;
+        }
+
     }
 
 
@@ -70,7 +71,6 @@ void getAnswer(vector<vector<pair<int, int> > >& graph,vector<int>& fast,vector<
     fast[0] = 0;
     for(int i = 0; i < graph.size() - 1; i++)
     {
-        isUpdated = false;
         for(int j = 0; j < graph.size(); j++)
         {
             for(int k = 0 ; k < graph[j].size(); k++)
@@ -78,19 +78,12 @@ void getAnswer(vector<vector<pair<int, int> > >& graph,vector<int>& fast,vector<
                 int target = graph[j][k].first;
                 int dist = graph[j][k].second;
                 if(fast[target] > fast[j] + dist)
-                {
                     fast[target] = fast[j] + dist;
-                    isUpdated = true;
-                }
                 if(slow[target] < slow[j] + dist)
-                {
                     slow[target] = slow[j] + dist;
-                    isUpdated = true;
-                }
             }
         }
 
-        if(!isUpdated) break;
     }
 
     //cout << "test" << endl;
@@ -104,12 +97,12 @@ void getAnswer(vector<vector<pair<int, int> > >& graph,vector<int>& fast,vector<
             int dist = graph[j][k].second;
             if(!slow.empty() && slow[target] < slow[j] + dist)
             {
-                if(checkPath(graph,0,target) && checkPath(graph,target,1))
+                if(checkPath(graph,0,j) && checkPath(graph,j,1))
                     slow.clear();
             }
             if(!fast.empty() && fast[target] > fast[j] + dist)
             {
-                if(checkPath(graph,0,target) && checkPath(graph,target,1))
+                if(checkPath(graph,0,j) && checkPath(graph,j,1))
                     fast.clear();
             }
         }
