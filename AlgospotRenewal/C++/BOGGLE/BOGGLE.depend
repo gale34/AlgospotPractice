@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1520573394 source:c:\users\game\documents\algospot\algospotpractice\algospotrenewal\c++\boggle\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	<cstdio>
+	<map>
+

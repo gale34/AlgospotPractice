@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1512299229 source:c:\users\game\documents\algospot\algospotpractice\nts2017winter\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<windows.h>
+
